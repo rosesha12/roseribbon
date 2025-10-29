@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Rose & Ribbon — Checkout / Payment Page -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Rose & Ribbon 🌹</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="dark-header">
+    <div class="logo">🌹 ROSE & RIBBON</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Shop</a></li>
+        <li><a href="order.html">Order</a></li>
+        <li><a href="checkout.html" class="active">Checkout</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== CHECKOUT SECTION ===== -->
+  <section class="checkout-section">
+    <h2>ORDER SUMMARY & PAYMENT</h2>
+
+    <!-- This card will show the selected order details -->
+    <div class="checkout-card">
+      <h3>Order Details</h3>
+
+      <p><strong>Product:</strong> <span id="productName">Loading...</span></p>
+      <p><strong>Price (each):</strong> KSh <span id="productPrice">0</span></p>
+      <p>
+        <strong>Quantity:</strong>
+        <input type="number" id="quantityInput" min="1" value="1">
+      </p>
+      <p><strong>Total:</strong> KSh <span id="totalPrice">0</span></p>
+    </div>
+
+    <!-- Payment Options (mock-up only, no real integration) -->
+    <div class="payment-options">
+      <h3>Payment Method</h3>
+      <label><input type="radio" name="payment" value="M-PESA" checked> M-PESA</label><br>
+      <label><input type="radio" name="payment" value="Credit Card"> Credit/Debit Card</label><br>
+      <label><input type="radio" name="payment" value="Pay on Delivery"> Pay on Delivery</label>
+    </div>
+
+    <!-- Confirm Button -->
+    <button class="btn-red" id="confirmBtn">Confirm Payment</button>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="dark-footer">
+    <p>&copy; 2025 ROSE & RIBBON | POWER IN EVERY PETAL 💪</p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT FUNCTIONALITY ===== -->
+  <script>
+    // Retrieve product, price, and quantity from URL (sent from order.html)
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get("product");
+    const price = parseFloat(urlParams.get("price"));
+    const quantity = parseInt(urlParams.get("quantity")) || 1;
+
+    // Get HTML elements
+    const productName = document.getElementById("productName");
+    const productPrice = document.getElementById("productPrice");
+    const totalPrice = document.getElementById("totalPrice");
+    const quantityInput = document.getElementById("quantityInput");
+
+    // Set initial values on page
+    if (product && price) {
+      productName.textContent = product;
+      productPrice.textContent = price.toLocaleString();
+      totalPrice.textContent = (price * quantity).toLocaleString();
+      quantityInput.value = quantity;
+    }
+
+    // Update total when quantity changes
+    quantityInput.addEventListener("input", function () {
+      const newQuantity = parseInt(quantityInput.value);
+      totalPrice.textContent = (price * newQuantity).toLocaleString();
+    });
+
+    // Mock confirmation (no real payment)
+    document.getElementById("confirmBtn").addEventListener("click", function() {
+      const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+      alert(`✅ Order Confirmed!\n\nProduct: ${product}\nPayment Method: ${selectedPayment}\nThank you for shopping with Rose & Ribbon!`);
+      window.location.href = "index.html"; // Redirect back to home
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ROSE & RIBBON — ORDER PAGE WITH PRODUCT DROPDOWN -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order | Rose & Ribbon 🌹</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="dark-header">
+    <div class="logo">🌹 ROSE & RIBBON</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Shop</a></li>
+        <li><a href="order.html" class="active">Order</a></li>
+        <li><a href="checkout.html">Checkout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== ORDER FORM ===== -->
+  <section class="order-form">
+    <h2>PLACE YOUR ORDER</h2>
+
+    <form id="orderForm">
+      <!-- CUSTOMER NAME -->
+      <label for="name">Full Name:</label>
+      <input id="name" type="text" placeholder="Enter your name" required>
+
+      <!-- PHONE -->
+      <label for="phone">Phone Number:</label>
+      <input id="phone" type="tel" placeholder="07XXXXXXXX" required>
+
+      <!-- PRODUCT DROPDOWN -->
+<label for="productSelect">Select Product:</label>
+<select id="productSelect" required>
+  <option value="" disabled selected>-- Choose a product --</option>
+  <option value="Red Roses Bouquet" data-price="2000">Red Roses Bouquet - KSh 2,000</option>
+  <option value="Chocolate Gift Box" data-price="3000">Chocolate Gift Box - KSh 3,000</option>
+  <option value="Wedding Flower Basket" data-price="3500">Wedding Flower Basket - KSh 3,500</option>
+  <option value="Teddy & Flowers Combo" data-price="2800">Teddy & Flowers Combo - KSh 2,800</option>
+  <option value="Perfume Gift Box" data-price="4500">Perfume Gift Box - KSh 4,500</option>
+  <option value="Teddy Chocolate Combo" data-price="2500">Teddy Chocolate Combo - KSh 2,500</option>
+  <option value="White Lily Bouquet" data-price="2800">White Lily Bouquet - KSh 2,800</option>
+  <option value="Mixed Flower Basket" data-price="2600">Mixed Flower Basket - KSh 2,600</option>
+  <option value="Valentine Love Box" data-price="4,000">Valentine Love Box - KSh 4,000</option>
+  <option value="Birthday Gift Basket" data-price="2400">Birthday Gift Basket - KSh 2,400</option>
+</select>
+
+      <!-- PRICE DISPLAY (auto-updates when product selected) -->
+      <p id="priceDisplay" style="font-weight: bold; margin-top: 8px;">Price: KSh 0</p>
+
+      <!-- QUANTITY -->
+      <label for="quantity">Quantity:</label>
+      <input id="quantity" type="number" min="1" value="1" required>
+
+      <!-- DELIVERY ADDRESS -->
+      <label for="address">Delivery Address:</label>
+      <textarea id="address" rows="3" placeholder="Enter full delivery address" required></textarea>
+
+      <!-- BUTTON TO GO TO CHECKOUT PAGE -->
+      <button type="button" class="btn-red" id="toCheckoutBtn">Submit Order</button>
+    </form>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="dark-footer">
+    <p>&copy; 2025 ROSE & RIBBON | POWER IN EVERY PETAL 💪</p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT FUNCTIONALITY ===== -->
+  <script>
+    // Grab elements
+    const productSelect = document.getElementById('productSelect');
+    const priceDisplay = document.getElementById('priceDisplay');
+    const quantityInput = document.getElementById('quantity');
+
+    // When a user selects a product, update its price automatically
+    productSelect.addEventListener('change', function() {
+      const selectedOption = productSelect.options[productSelect.selectedIndex];
+      const price = selectedOption.getAttribute('data-price'); // Get price from option
+      if (price) {
+        priceDisplay.textContent = "Price: KSh " + parseFloat(price).toLocaleString();
+        priceDisplay.dataset.price = price; // Store it for later use
+      }
+    });
+
+    // Handle the "Submit Order" button click
+    document.getElementById('toCheckoutBtn').addEventListener('click', function () {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const product = productSelect.value;
+      const price = priceDisplay.dataset.price;
+      const quantity = quantityInput.value;
+      const address = document.getElementById('address').value.trim();
+
+      // Validate all fields
+      if (!name || !phone || !product || !address || !price) {
+        alert("Please fill out all fields before submitting.");
+        return;
+      }
+
+      // Redirect to checkout.html with selected product, price & quantity
+      const queryString = new URLSearchParams({
+        product: product,
+        price: price,
+        quantity: quantity
+      }).toString();
+
+      window.location.href = 'checkout.html?' + queryString;
+    });
+  </script>
+</body>
+</html>

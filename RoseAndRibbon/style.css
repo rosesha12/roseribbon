@@ -1,0 +1,165 @@
+/* ================================
+   🌹 ROSE & RIBBON | Dark Bold Style
+   ================================ */
+
+/* --- RESET DEFAULT STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- BODY STYLING --- */
+body {
+    background-color: #0a0a0a;  /* deep black background */
+    color: #f2f2f2;             /* light text for contrast */
+}
+
+/* ===========================
+   HEADER & NAVIGATION
+   =========================== */
+.dark-header {
+    background-color: #1a0004;      /* dark red-black tone */
+    color: white;
+    display: flex;
+    justify-content: space-between; /* logo left, nav right */
+    align-items: center;
+    padding: 1.2em 5%;
+    border-bottom: 3px solid #ff004c; /* bold pink-red line */
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    color: #ff004c;   /* strong red-pink for identity */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;       /* spacing between menu links */
+}
+
+nav ul li a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #ff3366;  /* bright hover highlight */
+}
+
+/* ===========================
+   HERO / BANNER SECTION
+   =========================== */
+.hero-dark {
+    background: linear-gradient(to right, #66001a, #1a0004); /* dark red blend */
+    text-align: center;
+    padding: 6em 2em;
+}
+
+.hero-dark h1 {
+    font-size: 2.5em;
+    color: #ff004c;
+    font-weight: 900;  /* strong & bold */
+}
+
+.hero-dark p {
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: #ddd;
+}
+
+.btn-red {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 28px;
+    background-color: #ff004c;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-red:hover {
+    background-color: #cc003d;  /* slightly darker red */
+}
+
+/* ===========================
+   FEATURED PRODUCTS SECTION
+   =========================== */
+.featured {
+    padding: 4em 5%;
+    background-color: #111;
+    text-align: center;
+}
+
+.featured h2 {
+    color: #ff004c;
+    margin-bottom: 2em;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+/* --- PRODUCT GRID LAYOUT --- */
+.products {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* --- INDIVIDUAL PRODUCT CARD --- */
+.product {
+    background-color: #1a1a1a;
+    border: 2px solid #ff004c;
+    border-radius: 10px;
+    padding: 15px;
+    width: 220px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* --- PRODUCT IMAGE (perfect square, clean crop) --- */
+.product img {
+    width: 100%;
+    aspect-ratio: 1 / 1;              /* ensures a perfect square image */
+    object-fit: cover;                /* crops without stretching */
+    border-radius: 10px;              /* soft rounded edges */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* adds subtle depth */
+}
+
+/* --- PRODUCT HOVER EFFECT --- */
+.product:hover {
+    transform: translateY(-8px);     /* lift on hover */
+    box-shadow: 0 0 20px #ff004c;    /* glowing red outline */
+}
+
+.product h3 {
+    margin-top: 10px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.product p {
+    color: #ff99b3;
+    font-weight: 600;
+}
+
+/* ===========================
+   FOOTER SECTION
+   =========================== */
+.dark-footer {
+    background-color: #1a0004;
+    color: #ccc;
+    text-align: center;
+    padding: 1.2em;
+    font-size: 0.9em;
+    border-top: 2px solid #ff004c;
+}
